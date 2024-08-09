@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
-app.use(express.json());
+
+const cors = require('cors');
+
+
 require("dotenv").config();
 require("./connections/conn");
 
@@ -10,6 +13,9 @@ const Favourite = require('./routes/favourite');
 const Cart = require('./routes/cart');
 const Order = require('./routes/order');
 
+
+app.use(cors());
+app.use(express.json());
 
 app.use("/api/v1", user);
 app.use("/api/v1", Books);
