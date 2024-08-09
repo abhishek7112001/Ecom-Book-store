@@ -40,13 +40,15 @@ router.get("/get-favourite-books", authenticateToken, async (req, res)=>{
         const userData = await User.findById(id).populate("favourites");
         const favouriteBooks = userData.favourites;
 
-        return (res.json({
+        return res.json({
             status: "Success",
             data: favouriteBooks,
-        }));
+        });
 
 
     } catch (error) {
+        console.log(error);
+        
         return res.status(500).json({message: "Internal server error"});
     }
 })

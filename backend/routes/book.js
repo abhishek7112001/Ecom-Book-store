@@ -80,7 +80,7 @@ router.get('/get-all-books', authenticateToken, async (req, res)=>{
 //get recent added book
 router.get('/get-recent-books', async(req, res)=>{
     try {
-        const books = await Book.find().sort({createdAt: -1}).limit(2);
+        const books = await Book.find().sort({createdAt: -1}).limit(4);
         return res.json({
             status: "success",
             data: books,

@@ -13,7 +13,7 @@ router.post('/sign-up', async(req, res)=>{
         if(username.length<4){
             return res
                     .status(400)
-                    .json({message: "Usernme length should be greater than 3"});
+                    .json({message: "Username length should be greater than 3"});
         }
 
         //check username already exists
@@ -72,7 +72,8 @@ router.post('/sign-in', async (req, res)=>{
         await bcrypt.compare(password, existingUser.password, (err, data)=>{
             if(data){
                 const authClaims =[
-                    {name:existingUser.username}, {role: existingUser.role}
+                    {name:existingUser.username}, 
+                    {role: existingUser.role},
                 ]
                 const token = jwt.sign({authClaims}, `${process.env.JWT_SECRET}`,{expiresIn: "30d",})
 
