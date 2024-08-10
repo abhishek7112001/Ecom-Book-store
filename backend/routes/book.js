@@ -72,7 +72,9 @@ router.get('/get-all-books', authenticateToken, async (req, res)=>{
             data: books,
         });
     } catch (error) {
-        return res.status({message: "Internal server error"});
+        console.log(error);
+        
+        return res.status(500).json({message: "An error occurred"});
     }
 })
 
@@ -80,7 +82,7 @@ router.get('/get-all-books', authenticateToken, async (req, res)=>{
 //get recent added book
 router.get('/get-recent-books', async(req, res)=>{
     try {
-        const books = await Book.find().sort({createdAt: -1}).limit(4);
+        const books = await Book.find().sort({createdAt: -1}).limit(8);
         return res.json({
             status: "success",
             data: books,
@@ -103,7 +105,7 @@ router.get('/get-book-by-id/:id', async(req, res)=>{
             data: book,
         });
     } catch (error) {
-        return res.status({message:"Internal server error"});
+        return res.status(500).json({message:"Internal server error"});
     }
 })
 

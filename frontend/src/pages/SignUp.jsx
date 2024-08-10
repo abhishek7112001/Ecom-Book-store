@@ -1,8 +1,81 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 const SignUp = () => {
   return (
-    <div>SignUp</div>
+    <div className='h-auto px-12 py-8 flex items-center justify-center'>
+      <div className='bg-gray-700 rounded-lg px-8 py-5 w-full md:w-3/6 lg:w-2/6'>
+        <p className='text-white text-xl'>
+          Sign Up
+        </p>
+        <div className='mt-4'>
+          <div>
+            <label htmlFor='' className='text-white'>
+              Username
+            </label>
+            <input 
+            type='text'
+            className='w-full mt-2 bg-black text-white p-2 outline-none'
+            placeholder='username'
+            name="username"
+            required
+            />
+            
+          </div>
+          <div className='mt-4'>
+            <label htmlFor='' className='text-white'>
+              Email
+            </label>
+            <input
+            type='email'
+            className='w-full mt-2 bg-black text-white p-2 outline-none'
+            placeholder='xyz@example.com'
+            name="email"
+            required
+            />
+          </div>
+          <div className='mt-4'>
+            <label htmlFor='' className='text-white'>
+              Password
+            </label>
+            <input
+            type='password'
+            className='w-full mt-2 bg-black text-white p-2 outline-none'
+            placeholder='password'
+            name="password"
+            required
+            />
+          </div>
+          <div className='mt-4'>
+            <label htmlFor='' className='text-white'>
+              Address
+            </label>
+            <input
+            type='text'
+            className='w-full mt-2 bg-black text-white p-2 outline-none'
+            rows="5"
+            placeholder='address'
+            name="address"
+            required
+            />
+          </div>
+          <div className='mt-4'>
+            <button className='w-full mt-8 bg-orange-500 font-semibold hover:bg-orange-400 text-white p-2 rounded-lg'>
+              Sign Up
+            </button>
+          </div>
+
+          <p className='flex mt-4 items-center justify-center text-white font-semibold'>or</p>
+          <p className=' items-center justify-center flex mt-4 text-white'>
+            Already have an account? &nbsp;
+            <Link to="/LogIn" className='text-blue-500 font-semibold'>
+              <u>Log In</u>
+            </Link> 
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 

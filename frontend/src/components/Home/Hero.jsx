@@ -15,7 +15,7 @@ const Hero = () => {
             <button className='text-black border-2 border-blue-500 rounded px-5 py-3 
             text-2xl hover:bg-blue-500'>Discover Books</button>
         </div>
-        <div className='w-full  lg:w-3/6 h-auto lg:h-[100%] flex  items-center justify-center'>
+        <div className='w-full  lg:w-3/6 h-auto lg:h-[100%] flex  items-center justify-center mt-10'>
             <img src='/hero.png' alt='hero' />
         </div>
     </div>
