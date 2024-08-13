@@ -64,25 +64,22 @@ router.delete('/delete-book', authenticateToken, async (req, res)=>{
 
 
 //get all books
-router.get('/get-all-books', authenticateToken, async (req, res)=>{
+router.get('/getallbook', authenticateToken, async (req, res) => {
     try {
-        const books = await Book.find().sort({createdAt: -1});
-        return res.json({
-            status: "success",
-            data: books,
-        });
+        const books = await Book.find({});
+        res.status(200).send(books);  // Added status code for successful response
+        console.log("Books retrieved successfully");
     } catch (error) {
-        console.log(error);
-        
-        return res.status(500).json({message: "An error occurred"});
+        console.error("Error retrieving books:", error);  // More detailed logging
+        res.status(500).json({ message: "An error occurred while retrieving books" });
     }
-})
+});
 
 
 //get recent added book
 router.get('/get-recent-books', async(req, res)=>{
     try {
-        const books = await Book.find().sort({createdAt: -1}).limit(8);
+        const books = await Book.find().sort({createdAt: -1}).limit(4);
         return res.json({
             status: "success",
             data: books,

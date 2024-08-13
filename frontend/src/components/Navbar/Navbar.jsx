@@ -39,25 +39,38 @@ const Navbar = () => {
         <div className="flex bg-white text-black px-4 py-5 items-center justify-between">
             
             <Link to='/' className='flex items-center'>
-                <img className='h-10 me-2' src="./logo_book.png" alt='logo'/>
+                <img className='h-10 me-2' src="/logo_book.png" alt='logo'/>
                 <h1 className='text-3xl font-cursive font-bold'>Bookoholic</h1>
             </Link>
             <div className='nav-links-bookheaven block md:flex gap-6 items-center'>
                 <div className='hidden md:flex gap-4'>
                 {links.map((items, i)=>(
-                    <Link to={items.link}
-                    className='hover:text-gray-400 transition-all
-                 duration-300 text-xl cursor-pointer font-semibold text-black p-1.5
-                 rounded'
-
-                 key={i}> {items.title}{" "}
-                 </Link>
+                    <div className='flex items-center justify-center'>
+                        {items.title ==="Profile" ? 
+                        <Link to={items.link}
+                        className='px-4 py-2 border-2 border-blue-500 font-semibold hover:bg-blue-500 rounded'
+    
+                     key={i}> {items.title}
+                     </Link>:
+                     <Link to={items.link}
+                     className='hover:text-gray-400 transition-all
+                  duration-300 text-xl cursor-pointer font-semibold text-black p-1.5
+                  rounded'
+ 
+                  key={i}> {items.title}{" "}
+                  </Link>
+                     }
+                    </div>
                  ))}
                 </div>
-                <div className='hidden md:flex gap-4 '>
-                     <Link to='LogIn' className='px-4 py-2 border-2 border-blue-500 font-semibold hover:bg-blue-500 rounded'>LogIn</Link>
-                     <Link to='SignUp' className='px-4 py-2 bg-orange-700 text-white font-semibold hover:bg-orange-400 rounded'>SignUp</Link>
-                </div>
+                
+
+                {isLoggedIn === false && (
+                    <div className='hidden md:flex gap-4 '>
+                    <Link to='LogIn' className='px-4 py-2 border-2 border-blue-500 font-semibold hover:bg-blue-500 rounded'>LogIn</Link>
+                    <Link to='SignUp' className='px-4 py-2 bg-orange-700 text-white font-semibold hover:bg-orange-400 rounded'>SignUp</Link>
+                    </div>)
+                }
                 <button className='text-2xl block hover:text-gray-400 lg:hidden md:hidden' onClick={()=> MobileNav=== "hidden" ? setMobileNav("block"): setMobileNav("hidden")}>
                     <FiMenu />
                 </button>
@@ -84,9 +97,12 @@ const Navbar = () => {
                  
                  ))}
                  
+                {isLoggedIn === false && (
+                    <>
                 <Link to='LogIn' className={`px-8 mt-6 py-2 border-2 text-white border-blue-500 font-semibold hover:bg-blue-500 rounded`}>LogIn</Link>
                 <Link to='SignUp' className={`px-8 mt-6 py-2 bg-orange-700 text-white font-semibold hover:bg-orange-400 rounded`}>SignUp</Link>
-                
+                </>)
+                }
     </div>
     </>
   )
