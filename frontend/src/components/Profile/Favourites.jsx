@@ -32,8 +32,8 @@ const Favourites = () => {
         </div>
       )}
 
-      <div className='grid grid-cols-4 gap-4'>
-
+      {/* <h1 className='text-5xl font-semibold text-black mb-8'>Favourite Books</h1> */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {favouriteBooks && favouriteBooks.map((items, i)=>
         <div key={i}>
           <BookCard data={items} favourite={true} />

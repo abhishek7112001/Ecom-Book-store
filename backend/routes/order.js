@@ -3,6 +3,7 @@ const User= require("../models/user");
 const Order = require('../models/order');
 const {authenticateToken} = require("./userAuth");
 const Book = require("../models/book");
+const order = require("../models/order");
 
 //place order
 router.post('/place-order', authenticateToken, async(req, res)=>{
@@ -38,18 +39,25 @@ router.post('/place-order', authenticateToken, async(req, res)=>{
 router.get("/get-order-history", authenticateToken, async(req, res)=>{
     try {
         const {id} = req.headers;
-        const userData = await User.findById(id).populate({
-            path: "orders",
-            populate: {
-                path: "book",
-            },
-        });
-        const ordersData =userData.orders.reverse();
+        console.log(id)
+        // const userData = await User.findById(id).populate({
+        //     path: "orders",
+        //     populate: {
+        //         path: "book",
+        //     },
+        // });
+        // const ordersData =userData.orders.reverse();
 
-        return res.json({
-            status: "success",
-            data: ordersData,
-        });
+        // return res.json({
+        //     status: "success",
+        //     data: ordersData,
+        // });
+
+        // const userData = await Order.findById({user: id})
+        // res.send(userData)
+        const data=await order.find({user:id})
+        console.log(data)
+        res.send(data)
     } catch (error) {    
         return res.status(500).json({message: "Internal server error"});
     }

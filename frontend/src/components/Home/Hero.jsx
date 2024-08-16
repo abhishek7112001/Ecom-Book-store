@@ -16,7 +16,7 @@ const Hero = () => {
             text-2xl hover:bg-blue-500'>Discover Books</button>
         </div>
         <div className='w-full  lg:w-3/6 h-auto lg:h-[100%] flex  items-center justify-center mt-10'>
-            <img src='/hero.png' alt='hero' />
+            <img src='./hero.png' alt='hero' />
         </div>
     </div>
   )

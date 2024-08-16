@@ -45,9 +45,7 @@ const AllBooks = () => {
       ))}
     </div>
         ) : (
-          <div className='flex items-center justify-center my-8'>
-            <Loader />{" "}
-          </div>
+          <div className='flex w-full items-center justify-center h-screen'> <Loader /></div>
         )}
       </ul>
     </div>
