@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import Loader from '../Loader/Loader'
 import axios from 'axios';
@@ -6,14 +6,16 @@ import {GrLanguage} from 'react-icons/gr';
 import { FaHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { useSelector } from 'react-redux';
-import { FaEdit } from "react-icons/fa";
+import { MdEditSquare } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-
+import { useNavigate } from 'react-router-dom';
 
 
 const ViewBookDetails = () => {
   const {id} =useParams();
   
+  const navigate = useNavigate();
+
   const [Data, setData] = useState();
 
   const isLoggedIn = useSelector((state)=> state.auth.isLoggedIn);
@@ -48,6 +50,11 @@ const ViewBookDetails = () => {
     alert(response.data.message);
   }
 
+  const deleteBook = async()=>{
+    const response = await axios.delete(`http://localhost:1000/api/v1/delete-book/`,{headers});
+    alert(response.data.message);
+    navigate('/all-books');
+  }
   return (
     <>
     {Data && (
@@ -72,11 +79,11 @@ const ViewBookDetails = () => {
 
             {isLoggedIn ===true && role==="admin" && (
               <div className='flex flex-col md:flex-row lg:flex-col items-center justify-between lg:justify-start mt-4 lg:mt-0'>
-                <button className='lg:rounded-full rounded text-4xl p-3 flex ml-4 items-center justify-center
-                   '><FaEdit /><span className='ms-4 mr-4 text-xl lg:hidden block '>Edit</span>
-                </button>
+                <Link to={`/updateBook/${id}`} className='lg:rounded-full rounded mt-8 md:mt-0 text-3xl p-3 text-red-500 lg:mt-4 ml-4 bg-white 
+                flex items-center justify-center'><MdEditSquare /><span className='ms-4 mr-4 text-xl lg:hidden block '>Edit</span>
+                </Link>
                 <button className='lg:rounded-full rounded mt-8 md:mt-0 text-3xl p-3 text-red-500 lg:mt-4 ml-4 bg-white 
-                flex items-center justify-center'><MdDelete />
+                flex items-center justify-center' onClick={deleteBook}><MdDelete />
                 <span className='ms-4 mr-4 text-xl lg:hidden block'>Delete Book</span></button>
             </div>
             )}
