@@ -15,7 +15,11 @@ const Order = require('./routes/order');
 const book = require("./models/book");
 
 
-app.use(cors({}));
+
+app.use(cors({
+  origin: 'https://ecombookstore.vercel.app/' // Your Vercel frontend URL
+}));
+
 app.use(express.json());
 
 app.use("/api/v1", user);
