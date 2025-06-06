@@ -29,9 +29,9 @@ app.get("/allbooks",async(req,res)=>{
     res.send(books)
 })
 
-// app.get('/', (req, res) =>{
-//     res.send("Hello from backend");
-// });
+app.get('/', (req, res) =>{
+    res.send("Hello from backend");
+});
 
 //creating port
 app.listen(process.env.PORT, ()=>{

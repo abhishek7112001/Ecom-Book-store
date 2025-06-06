@@ -7,7 +7,7 @@ const order = new mongoose.Schema({
     },
     book: {
         type: mongoose.Types.ObjectId,
-        ref: "user",
+        ref: "book",
     },
     status: {
         type: String,
@@ -18,3 +18,4 @@ const order = new mongoose.Schema({
 }, {timestamps: true});
 
 module.exports= mongoose.model("order", order);
+

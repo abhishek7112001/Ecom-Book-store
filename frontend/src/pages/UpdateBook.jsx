@@ -36,7 +36,7 @@ const UpdateBook = () => {
                 alert("Please fill all the fields");
             }
             else{
-                const response = await axios.put("http://localhost:1000/api/v1/update-book", Data, {headers});
+                const response = await axios.put(`${import.meta.env.VITE_BASE_URL}/update-book`, Data, {headers});
                 setData({
                     url: "" ,
                     title: "" ,
@@ -55,7 +55,7 @@ const UpdateBook = () => {
 
     useEffect(()=>{
         const fetch = async() =>{
-            const response = await axios.get(`http://localhost:1000/api/v1/get-book-by-id/${id}`)
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/get-book-by-id/${id}`)
             console.log(response);
             
             setData(response.data.data);

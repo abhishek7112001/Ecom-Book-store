@@ -27,7 +27,7 @@ const LogIn = () => {
         alert("Please fill all the fields");
       }
       else{
-        const response = await axios.post("http://localhost:1000/api/v1/sign-in", Values);
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/sign-in`, Values);
         dispatch(authActions.login());
         dispatch(authActions.changeRole(response.data.role));
         console.log(response.data);

@@ -17,7 +17,6 @@ import Settings from './components/Profile/Settings';
 import AllOrders from './pages/AllOrders';
 import AddBook from './pages/AddBook';
 import UpdateBook from './pages/UpdateBook';
-import Temp from './components/ViewBookDetails/Temp';
 
 
 
@@ -59,7 +58,7 @@ const App = () => {
 
         </Routes>
         <Footer />
-        <Temp name="ahvaskjbk" value="3" />
+      
      
     </div>
   )

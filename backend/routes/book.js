@@ -51,7 +51,7 @@ router.put('/update-book', authenticateToken, async (req, res)=>{
     }
 })
 
-//delete boo --admin
+//delete book --admin
 router.delete('/delete-book', authenticateToken, async (req, res)=>{
     try {
         const {bookid}= req.headers;

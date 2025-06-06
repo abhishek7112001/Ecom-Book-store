@@ -16,14 +16,14 @@ const Cart = () => {
 
   useEffect(()=>{
     const fetch = async() =>{
-      const response = await axios.get("http://localhost:1000/api/v1/get-user-cart",{headers});
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/get-user-cart`,{headers});
       setCart(response.data.data);
     }
     fetch();
   },[Cart]);
 
   const deleteItem = async(bookid)=>{
-    const response = await axios.put(`http://localhost:1000/api/v1/remove-from-cart/${bookid}`,{},{headers});
+    const response = await axios.put(`${import.meta.env.VITE_BASE_URL}/remove-from-cart/${bookid}`,{},{headers});
     alert(response.data.message);
   };
 
@@ -38,9 +38,9 @@ const Cart = () => {
     }
   },[Cart]);
 
-  const PlaceOrder =async() =>{
+  const PlaceOrderCOD =async() =>{
     try {
-      const response = await axios.post("http://localhost:1000/api/v1/place-order",{order:Cart},{headers});
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/place-order`,{order:Cart},{headers});
       alert(response.data.message);
       navigate("/profile/orderHistory");
     } catch (error) {
@@ -48,7 +48,6 @@ const Cart = () => {
       
     }
   }
-
 
   return (
     <div className='bg-white px-12 h-screen py-8'>
@@ -115,13 +114,17 @@ const Cart = () => {
             <div className='mt-3 flex items-center justify-between text-xl text-white'>
               <h2>{Cart.length} books </h2><h2>{Total}</h2>
             </div>
-            <div className='w-[100%] mt-3'>
+            <div className='w-[100%] mt-3 flex gap-4'>
+              {/* COD Button */}
               <button
-                className='bg-black rounded px-4 py-2 flex justify-center w-full font-semibold
-                hover:bg-gray-400 text-white'
-                onClick={PlaceOrder}
-                >Place Your Order</button>
+                className='bg-black rounded px-4 py-2 flex justify-center w-full font-semibold hover:bg-gray-400 text-white'
+                onClick={PlaceOrderCOD}
+              >
+                Place Order (COD)
+              </button>
+
             </div>
+
           </div>
         </div>
       )}
