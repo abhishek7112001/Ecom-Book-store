@@ -15,9 +15,25 @@ const Order = require('./routes/order');
 const book = require("./models/book");
 
 
+app.use(cors());
 
 app.use(cors({
   origin: 'https://ecombookstore.vercel.app/' // Your Vercel frontend URL
+}));
+
+const allowedOrigins = [
+  'https://ecombookstore.vercel.app',
+  'http://localhost:5173' // For local development
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
 
 app.use(express.json());
